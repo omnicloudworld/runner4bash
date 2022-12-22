@@ -23,7 +23,7 @@ RUN \
     
 COPY src/mc/root.ini /root/.config/mc/ini
 COPY --chown=skyant:skyant src/mc/skyant.ini /home/skyant/.config/mc/ini
-COPY req.pip /tmp/req.pip
+COPY bash.req /var/pip/bash.req
 
 RUN \
     apt-get update &&\
@@ -50,7 +50,7 @@ RUN \
 
 RUN \
     pip3 install --no-cache-dir --upgrade pip; \
-    pip3 install --no-cache-dir --upgrade -r /tmp/req.pip
+    pip3 install --no-cache-dir --upgrade -r /var/pip/bash.req
 
 
 ENTRYPOINT ["/usr/bin/tini", "--"] 
